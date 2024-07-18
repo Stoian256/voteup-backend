@@ -1,0 +1,64 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+}
+
+group = 'com.java'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
+targetCompatibility = '16'
+
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url "https://repository.aspose.com/repo/"
+	}
+	maven {
+		url "https://maven.google.com"
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.enigmabridge:hibernate4-sqlite-dialect:0.1.2'
+	//runtimeOnly 'org.sqlite:sqlite-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'org.xerial:sqlite-jdbc:3.34.0'
+	runtimeOnly 'org.hibernate:hibernate-core:5.6.9.Final'
+	implementation 'org.bytedeco:javacv-platform:1.5.6'
+	// https://mvnrepository.com/artifact/com.asprise.ocr/java-ocr-api
+	implementation group: 'com.asprise.ocr', name: 'java-ocr-api', version: '15.3.0.3'
+	implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.6'
+
+
+
+	// Commented out AWS-related dependencies
+	//implementation group: 'com.amazonaws', name: 'aws-java-sdk-textract', version: '1.12.466'
+	//implementation 'software.amazon.awssdk:textract:2.15.61'
+	//implementation 'com.amazonaws:aws-java-sdk-s3:1.11.772'
+	implementation 'net.sourceforge.tess4j:tess4j:5.6.0'
+	//implementation 'com.aspose:aspose-ocr:22.2'
+
+	implementation 'com.aspose:aspose-ocr:23.5.0'
+	//implementation 'com.google.cloud:google-cloud-vision:2.7.2'
+
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//implementation 'org.hibernate:hibernate-core:4.1.4.Final'
+	//runtimeOnly group: 'org.xerial',name: 'sqlite-jdbc', version: '3.28.0'
+	//annotationProcessor group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+	//annotationProcessor group: 'com.querydsl', 'name': 'querydsl-apt', version: '5.0.0' , classifier: 'jpa'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
